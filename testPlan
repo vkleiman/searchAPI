@@ -1,0 +1,35 @@
+iTunesSearch API Test Plan:
+-params: term=jack+johnson
+- expected: receive 50 records (happy path)
+
+-params: term=jack+johnson&country=US
+- expected: receive 50 records
+
+-params: term=jack+johnson&country=DE //try another country
+- expected: receive 50 records
+
+-params: term=jack+johnson&media=all //try every type of media, movie, podcast ... etc. 
+- expected: receive some number of records, specify a term such that results are not empty
+
+-params: term=jack+johnson&limit=10
+- expected: receive 10 records
+
+-params: term=jack+johnson&limit=10&country=DE&media=movie // try all params at the same time
+- expected: receive 10 records
+
+negative:
+-params: 'empty string'
+- expected: Error: term must be specified
+
+-params: term=jack+johnson&blah=ZZ //try bad param
+- expected: Error: unknown param blah
+
+-params: term=jack+johnson&country=ZZ //try bad country
+- expected: Error: bad country specified
+
+-params: term=jack+johnson&media=junk //try bad media
+- expected: Error: bad media specified
+
+-params: term=jack+johnson&limit=0 //try bad count, also try 300, junk, -10
+- expected: Error: bad limit specified
+

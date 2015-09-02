@@ -18,7 +18,7 @@ iTunesSearch API Test Plan:
 - expected: receive 10 records
 
 negative:
--params: 'empty string'
+-params: 'empty string' 
 - expected: Error: term must be specified
 
 -params: term=jack+johnson&blah=ZZ //try bad param
